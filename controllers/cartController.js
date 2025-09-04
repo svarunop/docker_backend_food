@@ -6,7 +6,7 @@ exports.addToCart = (req, res) => {
   const { user_id, restaurant_id, item_id, quantity } = req.body;
 
   db.query(
-    'INSERT INTO Cart (user_id, restaurant_id, item_id, quantity) VALUES (?, ?, ?, ?)',
+    'INSERT INTO cart (user_id, restaurant_id, item_id, quantity) VALUES (?, ?, ?, ?)',
     [user_id, restaurant_id, item_id, quantity],
     (err, results) => {
       if (err) {
@@ -25,7 +25,7 @@ exports.updateCartItemQuantity = (req, res) => {
     return res.status(400).json({ message: "Quantity must be at least 1" });
   }
 
-  const query = `UPDATE Cart SET quantity = ? WHERE user_id = ? AND item_id = ?`;
+  const query = `UPDATE cart SET quantity = ? WHERE user_id = ? AND item_id = ?`;
 
   db.query(query, [quantity, user_id, item_id], (err, result) => {
     if (err) {
@@ -44,7 +44,7 @@ exports.getCartItems = (req, res) => {
   const query = `
     SELECT c.cart_id, c.user_id, c.restaurant_id, c.item_id, c.quantity, c.total_price,
            m.name, m.price, m.image
-    FROM Cart c
+    FROM cart c
     JOIN menu_items m ON c.item_id = m.item_id
     WHERE c.user_id = ?;
   `;

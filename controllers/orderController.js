@@ -6,7 +6,7 @@ exports.placeOrder = (req, res) => {
   const { user_id, restaurant_id, total_amount } = req.body;
 
   db.query(
-    'INSERT INTO Orders (user_id, restaurant_id, total_amount) VALUES (?, ?, ?)',
+    'INSERT INTO orders (user_id, restaurant_id, total_amount) VALUES (?, ?, ?)',
     [user_id, restaurant_id, total_amount],
     (err, results) => {
       if (err) {
@@ -22,7 +22,7 @@ exports.getOrderDetails = (req, res) => {
   const { order_id } = req.params;
 
   db.query(
-    'SELECT * FROM Orders WHERE order_id = ?',
+    'SELECT * FROM orders WHERE order_id = ?',
     [order_id],
     (err, results) => {
       if (err) {

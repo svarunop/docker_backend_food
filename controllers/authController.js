@@ -10,7 +10,7 @@ exports.userLogin = async (req, res) => {
     const { email, password } = req.body;
     // console.log('User login attempt with email:', email);
 
-    db.query('SELECT * FROM Users WHERE email = ?', [email], async (err, results) => {
+    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
         if (err) {
             // console.error('Database error:', err);
             return res.status(500).send('Internal Server Error');

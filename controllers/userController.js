@@ -7,7 +7,7 @@ require('dotenv').config();
 exports.getMenuItems = (req, res) => {
   console.log('Fetching menu items');
   db.query(
-    'SELECT * FROM Menu_Items',
+    'SELECT * FROM menu_items',
     (err, results) => {
       if (err) {
         console.error('Database error:', err);
@@ -67,7 +67,7 @@ exports.getOrders = (req, res) => {
   const { restaurant_id } = req.params;
 
   db.query(
-    'SELECT order_id, status, user_id AS customer_id FROM Orders WHERE restaurant_id = ?',
+    'SELECT order_id, status, user_id AS customer_id FROM orders WHERE restaurant_id = ?',
     [restaurant_id],
     (err, results) => {
       if (err) {
